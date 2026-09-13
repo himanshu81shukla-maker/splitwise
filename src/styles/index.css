@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #241442;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Receipt-style ticket card: perforated bottom edge via radial gradient */
+.ticket {
+  position: relative;
+  background: white;
+  border-radius: 18px;
+  border: 1.5px solid rgba(36, 20, 66, 0.08);
+}
+
+.ticket::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -1px;
+  height: 8px;
+  background-image: radial-gradient(circle at 6px 0, transparent 5px, white 5.5px);
+  background-size: 12px 8px;
+  background-repeat: repeat-x;
+}
+
+/* Custom scrollbar for horizontal friend chip strip */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2.5px solid #241442;
+  outline-offset: 2px;
+}
