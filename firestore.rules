@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // NOTE: This app has no login system (by design — simple profile picker).
+    // That means these rules can't verify *who* is writing, only that a
+    // request looks well-formed. Anyone with your Firebase config values
+    // (which are visible in the deployed site's JS bundle) could read/write
+    // this data. That's an acceptable tradeoff for a private 6-friend group
+    // tool, but don't reuse this project for anything sensitive.
+    match /expenses/{expenseId} {
+      allow read: if true;
+      allow create: if request.resource.data.amount is number
+                    && request.resource.data.amount > 0
+                    && request.resource.data.description is string;
+      allow update, delete: if true;
+    }
+    match /settlements/{settlementId} {
+      allow read: if true;
+      allow create: if request.resource.data.amount is number
+                    && request.resource.data.amount > 0;
+      allow update, delete: if true;
+    }
+  }
+}
