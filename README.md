@@ -1,4 +1,4 @@
-# Splitwise — Friends
+# Splitwise for Friends
 
 A Splitwise-style expense splitter built for a fixed group of 6 friends, with one extra
 feature Splitwise doesn't have: scan a receipt photo and it autofills the amount,
